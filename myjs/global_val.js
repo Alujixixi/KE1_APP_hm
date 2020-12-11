@@ -8,6 +8,8 @@ var default_url = {
 	devHistory : default_host+'devhistory'
 }
 
+var guest_rooms = []
+
 var device_info = {
 	devid : "",
 	devname : "",
@@ -16,6 +18,7 @@ var device_info = {
 }
 
 export default {
+  guest_rooms,
   default_url,
   device_info,
 }

@@ -6,7 +6,7 @@
 		
 		<view class="uni-form-item uni-column">
 			<view class="with-fun">
-				<input class="uni-input inputText" placeholder="输入模组IMEI号" type="number" :value="imei" maxlength="15" @input="imeiInput"/>
+				<input class="uni-input inputText" placeholder="输入模组IMEI号" type="number" maxlength="15" @input="imeiInput"/>
 			</view>
 		</view>
 		<!-- <view class="line"></view> -->
@@ -16,8 +16,8 @@
 					<!-- 类型 -->
 				</view>
 				<view class="uni-list-cell-db">
-					<picker mode="selector" @change="bindPickerChange" :value="index" :range="roomType">
-						<view class="uni-input">{{roomType[index]}}</view>
+					<picker mode="selector" @change="bindPickerChange" :value="index" :range="room_type">
+						<view class="uni-input">{{room_type[index]}}</view>
 					</picker>
 				</view>
 			</view>
@@ -27,7 +27,7 @@
 		<!-- <view class="line"></view> -->
 		<view class="uni-form-item uni-column">
 			<view class="with-fun">
-				<input class="uni-input inputText" placeholder="输入房间号" type="number" :value="imei" maxlength="15" @input="imeiInput"/>
+				<input class="uni-input inputText" placeholder="输入房间名" type="text" maxlength="15" @input="roomNameInput"/>
 			</view>
 		</view>
 		
@@ -54,7 +54,8 @@
 				btnRenameDisable:true,
 				btnInfoDisable:true,
 				index: 0,
-				roomType: ["请选择房间类型","客房","宴会厅","储藏室"],
+				room_type: ["请选择房间类型","客房","宴会厅","储藏室"],
+				room_name: "",
 			}
 		},
 		onLoad() {
@@ -104,7 +105,6 @@
 				});
 			},
 			imeiInput(e){
-				console.log("imeiInput");
 				this.imei = e.target.value;
 				if(15 == this.imei.length){
 					this.btnAddDisable = false;
@@ -112,16 +112,34 @@
 					this.btnAddDisable = true;
 				}
 			},
-			nameInput(e){
-				console.log("nameInput");
-				this.devname = e.target.value;
-				if(5 < this.devname.length){
-					this.btnRenameDisable = false;
-				}else{
-					this.btnRenameDisable = true;
+			roomNameInput(e){
+				this.room_name = e.target.value;
+			},
+			
+			checkRoomValue() {
+				if(this.index == 0) {
+					uni.showToast({
+						title: "请在选择房间类型后再注册！",
+						icon: "none"
+					});
+					return false;
 				}
+				console.log(this.room_name);
+				if(!this.room_name.length) {
+					uni.showToast({
+						title: "请输入房间名！",
+						icon: "none"
+					});
+					return false;
+				}
+				return true;
 			},
 			regDev(){
+				if(!this.checkRoomValue()) {
+					console.log("reg fail! Invalid room value");
+					return;
+				}
+				
 				uni.showLoading({
 					title: '注册中...',
 					mask: false
@@ -132,7 +150,7 @@
 					url: this.globalVal.default_url.devReg,
 					method: 'POST',
 					data: {
-						imei:this.imei
+						imei: this.imei
 					},
 					success: res => {
 						console.log(res);
@@ -143,8 +161,14 @@
 								this.devid = res.data.deviceId;
 								this.devname = res.data.deviceName;
 								// 把注册后的device_info同步到全局
-								this.globalVal.device_info.devid = this.devid;
-								this.globalVal.device_info.devname = this.devname;
+								var current_room = {
+									room_type: this.index,
+									room_name: this.room_name,
+									device_id: res.data.deviceId,
+									device_name: res.data.deviceName,
+								}
+								this.globalVal.guest_rooms.push(current_room);
+								console.log("guest_rooms: " + this.globalVal.guest_rooms);
 								this.btnInfoDisable = false;
 							}else{
 								errmsg = res.data.errmsg;
@@ -157,7 +181,7 @@
 						uni.showToast({
 							title: errmsg,
 							icon:"none",
-							duration:2500
+							duration: 2500
 						});
 					}
 				});

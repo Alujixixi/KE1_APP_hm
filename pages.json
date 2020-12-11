@@ -25,6 +25,12 @@
 			}
 		},
 		{
+			"path": "pages/index/Room_Info",
+			"style": {
+				"navigationBarTitleText": "房间查看"
+			}
+		},
+		{
 			"path": "pages/index/ledctrl",
 			"style": {
 				"navigationBarTitleText": "LED控制"
@@ -61,7 +67,7 @@
 				"text": "查询"
 			},
 			{
-				"pagePath": "pages/index/devctrl",
+				"pagePath": "pages/index/Room_Info",
 				"iconPath": "static/admin_off.png",
 				"selectedIconPath": "static/admin_on.png",
 				"text": "监控"
@@ -71,12 +77,6 @@
 				"iconPath": "static/admin_off.png",
 				"selectedIconPath": "static/admin_on.png",
 				"text": "LED"
-			},
-			{
-				"pagePath": "pages/index/ledctrl",
-				"iconPath": "static/admin_off.png",
-				"selectedIconPath": "static/admin_on.png",
-				"text": "mypag"
 			}
 		]
 	}
