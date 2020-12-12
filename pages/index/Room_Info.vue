@@ -6,15 +6,23 @@
 					请选择房间
 				</view>
 				<view class="uni-list-cell-db">
-					<picker mode="multiSelector" :range="room_selector" @change="room_select">
-						<view>{{}}</view>
+					<picker mode="multiSelector" :range="room_range" @change="room_change" :value="room_index">
+						<view class="uni-flex uni-row">
+							<view class="room-selector" style="padding: 0 20upx !important">
+								<!-- 这东西怎么不跟这变啊操 -->
+								{{room_range[0][room_index[0]]}}  {{room_range[1][room_index[1]]}}
+							</view>
+						</view>
 					</picker>
 <!-- 					<picker mode="selector" @change="bindPickerChange" :value="index" :range="room_type">
 						<view class="uni-input">{{room_type[index]}}</view>
 					</picker> -->
 				</view>
-				<view class="uni-list-cell-right">
-					<button class="button"   @tap="getInfo">刷新房间数据</button>
+				<view class="small-botton-cell">
+					<button class="small-botton"   @tap="getInfo">确认</button>
+				</view>
+				<view class="small-botton-cell">
+					<button class="small-botton"   @tap="getInfo">刷新房间</button>
 				</view>
 			</view>
 		</view>
@@ -50,7 +58,7 @@
 			</view>
 		</view>
 		<view class="uni-padding-wrap uni-common-mt">
-			<button class="button"   @tap="getInfo">刷新数据</button>
+			<button class="flush-button"   @tap="getInfo">刷新数据</button>
 		</view>
 	</view>
 </template>
@@ -60,7 +68,8 @@
 		components: {},
 		data() {
 			return {
-				room_selector: [["客房","宴会厅","储藏室"],[]],
+				room_range: [["请选择","客房","宴会厅","储藏室"],["待选择"]],
+				room_index: [0,0],
 				devid:'43132880-90cb-45e7-b4f9-f3f0d1670a82',
 				devinfo:null,
 				userinfo:null,
@@ -76,8 +85,16 @@
 			
 		},
 		methods: {
-			room_select() {
-				this.room_selector[1] = ["a","b"];
+			room_change(e) {
+				if(this.room_index[0] !== e.target.value[0]) {
+					this.room_index[0] = e.target.value[0];
+					var room_type = this.globalVal.index_2_room_type_tab[this.room_index[0]] + "s";
+					this.room_range[1] = this.globalVal.rooms[room_type];
+					if(this.room_range[1].length === 0) 
+						this.room_range[1].unshift("暂无房间");
+					console.log(this.room_range[0][this.room_index[0]])
+					console.log(this.room_index[0])
+				}
 			},
 			getInfo(){
 				uni.showLoading({
@@ -151,7 +168,16 @@
 	.uni-tab{
 		height: calc(100% - 210px); 
 	}
-	.button {
+	.small-botton-cell {
+		width: auto;
+		margin: 0 2upx;
+	}
+	.small-botton{
+		font-size: 20rpx;
+		padding: 0 10upx;
+		margin: 10upx;
+	}
+	.flush-button {
 		margin-top: 30upx;
 	    margin-left: 0;
 	    margin-right: 0;

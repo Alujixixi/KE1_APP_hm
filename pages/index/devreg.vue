@@ -161,13 +161,15 @@
 								this.devid = res.data.deviceId;
 								this.devname = res.data.deviceName;
 								// 把注册后的device_info同步到全局
+								var room_type = this.globalVal.index_to_room_type[this.index];
 								var current_room = {
-									room_type: this.index,
+									room_type: room_type,
 									room_name: this.room_name,
 									device_id: res.data.deviceId,
 									device_name: res.data.deviceName,
 								}
-								this.globalVal.guest_rooms.push(current_room);
+								var t = room_type + "s"; // guest_room --> guest_rooms  前者是房间类型，后者是rooms中的key
+								this.globalVal.rooms.t.push(current_room);
 								console.log("guest_rooms: " + this.globalVal.guest_rooms);
 								this.btnInfoDisable = false;
 							}else{
