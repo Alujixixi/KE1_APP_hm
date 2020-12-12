@@ -8,9 +8,9 @@
 				<view class="uni-list-cell-db">
 					<picker mode="multiSelector" :range="room_range" @change="room_change" :value="room_index">
 						<view class="uni-flex uni-row">
-							<view class="room-selector" style="padding: 0 20upx !important">
+							<view id="room-selector" style="padding: 0 20upx !important">
 								<!-- 这东西怎么不跟这变啊操 -->
-								{{room_range[0][room_index[0]]}}  {{room_range[1][room_index[1]]}}
+								{{room_range[0][room_index[0]]}}&nbsp&nbsp&nbsp&nbsp&nbsp{{room_range[1][room_index[1]]}}
 							</view>
 						</view>
 					</picker>
@@ -92,8 +92,8 @@
 					this.room_range[1] = this.globalVal.rooms[room_type];
 					if(this.room_range[1].length === 0) 
 						this.room_range[1].unshift("暂无房间");
-					console.log(this.room_range[0][this.room_index[0]])
-					console.log(this.room_index[0])
+					var text = this.room_range[0][this.room_index[0]] + "&nbsp&nbsp&nbsp&nbsp&nbsp" + this.room_range[1][this.room_index[1]]
+					document.getElementById("room-selector").innerHTML = text;
 				}
 			},
 			getInfo(){
@@ -134,7 +134,10 @@
 </script>
 
 <style>
-	
+	#room-selector {
+		color: #0c4cd5;
+		font-weight: bold;
+	}
 	.top{
 		color:#fff;
 		height:30px;
