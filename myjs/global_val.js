@@ -20,9 +20,9 @@ var default_url = {
  }
  */
 var rooms = {
-	guest_rooms: [],
-	banquet_halls: [],
-	storerooms: [],
+	guest_rooms: ["111","222","333"],
+	banquet_halls: ["444","555"],
+	storerooms: ["666","777"],
 };
 
 var index_2_room_type_tab = ["invalid", "guest_room", "banquet_hall", "storeroom"];

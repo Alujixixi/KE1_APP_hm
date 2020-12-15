@@ -6,7 +6,7 @@
 					请选择房间
 				</view>
 				<view class="uni-list-cell-db">
-					<picker mode="multiSelector" :range="room_range" @change="room_change" :value="room_index">
+					<picker mode="multiSelector" :range="room_range" @change="room_change" :value="room_index" @columnchange="colchange">
 						<view class="uni-flex uni-row">
 							<view id="room-selector" style="padding: 0 20upx !important">
 								<!-- 这东西怎么不跟这变啊操 -->
@@ -96,6 +96,18 @@
 					document.getElementById("room-selector").innerHTML = text;
 				}
 			},
+			colchange(e){
+				console.log(e);
+				if(e.target.column==0) {
+					this.room_index[0] = e.target.value;
+					var room_type = this.globalVal.index_2_room_type_tab[this.room_index[0]] + "s";
+					this.room_range[1] = this.globalVal.rooms[room_type];
+					if(this.room_range[1].length === 0) 
+						this.room_range[1].unshift("暂无房间");
+					var text = this.room_range[0][this.room_index[0]] + "&nbsp&nbsp&nbsp&nbsp&nbsp" + this.room_range[1][this.room_index[1]]
+					document.getElementById("room-selector").innerHTML = text;
+				}
+			},			
 			getInfo(){
 				uni.showLoading({
 					title: '数据加载中...',
