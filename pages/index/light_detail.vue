@@ -1,21 +1,25 @@
 <template>
 	<view>
 		
-		<view>当前状态</view>
-		<view id="light_pic">
+		<view>
+			当前状态
 			{{light_status}}
+		</view>
+		<view id="light_pic">
 			<image :src="light_src"></image>
 		</view>
 		<view>切换亮度</view>
-		<button type="primary">
-			高级
-		</button>
-		<button type="primary">
-			中级
-		</button>
-		<button type="primary">
-			低级
-		</button>
+		<view>
+			<button type="primary" @tap="choose_off" id="btn_off">
+				关灯
+			</button>
+			<button type="primary" @tap="choose_bright" id="btn_bright">
+				开灯高亮度
+			</button>
+			<button type="primary" @tap="choose_dim" id="btn_dim">
+				开灯低亮度
+			</button>
+		</view>
 	</view>
 </template>
 
@@ -24,7 +28,7 @@
 		data() {
 			return {
 				devid:'4e83c49c-0a88-4b18-a781-9ebd9306a972',
-				light_src: require("../../img/on_bright.png"),
+				light_src: "",
 				// sdad: require("../../img"),
 				light_status:"",
 				lightImg:"",
@@ -32,23 +36,34 @@
 		},
 		onLoad() {
 			this.light_status = this.globalVal.current_room.light_status;
-			this.choose_light();
+			this.renew_light_img();
 		},
 		onReady() {
 		},
 		methods: {
-			choose_light(){
-				console.log(this.light_status);
+			choose_off(){
+				this.light_status = "off";
+				this.renew_light_img();
+			},
+			choose_bright(){
+				this.light_status = "bright";
+				this.renew_light_img();
+			},
+			choose_dim(){
+				this.light_status = "dim";
+				this.renew_light_img();
+			},
+			renew_light_img(){
 				if (this.light_status=="off"){
-					this.lightImg = "D:/HBuilderX/repo/KE1_APP_hm/img/off.png";
+					this.light_src = require("../../img/off.png");
 				}
 				else if (this.light_status=="bright"){
-					this.lightImg = "../../img/on_bright.png";
+					this.light_src = require("../../img/on_bright.png");
 				}
 				else if (this.light_status=="dim"){
-					this.lightImg = "../../img/on_dim.png";
+					this.light_src = require("../../img/on_dim.png");
 				}
-			}
+			},
 			// send_light_cmd(){
 			// 	console.log("sendCmd");
 			// 	if(36 != this.devid.length){
