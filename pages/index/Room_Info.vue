@@ -14,9 +14,6 @@
 							</view>
 						</view>
 					</picker>
-<!-- 					<picker mode="selector" @change="bindPickerChange" :value="index" :range="room_type">
-						<view class="uni-input">{{room_type[index]}}</view>
-					</picker> -->
 				</view>
 				<view class="small-botton-cell">
 					<button class="small-botton"   @tap="getInfo">确认</button>
@@ -33,7 +30,7 @@
 				<view>{{devid}}</view>
 			</view>
 		</view>
-		<view class="topbox2">
+		<view class="topbox2" @tap="viewLightDetail">
 			<view>
 				<view >光强:</view>
 				<view >{{illumination}}</view>
@@ -140,7 +137,15 @@
 						uni.hideLoading();
 					}
 				});
-			}
+			},
+			viewLightDetail(){
+				uni.navigateTo({
+					url: 'light_detail',
+					success: res => {},
+					fail: () => {},
+					complete: () => {}
+				});
+			},
 		}
 	}
 </script>

@@ -41,6 +41,12 @@
 			"style": {
 				"navigationBarTitleText": "温湿度曲线图"
 			}
+		},
+		{
+			"path": "pages/index/light_detail",
+			"style": {
+				"navigationBarTitleText": "灯光控制"
+			}
 		}
 	],
 	"globalStyle": {
