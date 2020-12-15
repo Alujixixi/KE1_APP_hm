@@ -33,7 +33,7 @@
 <script>export default {
 		data() {
 			return {
-				devid:'你获取的设备注册Id号',
+				devid:'a3e7d01c-a537-47d2-ac28-9ba5881b201a',
 				cmdcode:0,
 				cmdstr:'',
 				cntDown:null,
@@ -103,14 +103,15 @@
 						cmdInfo:cmdstr
 					},
 					success: res => {
+						console.log(res);
 						uni.showToast({//向云端服务发送命令下发请求
 							title: '命令下发成功!请检查设备端',
 							icon:"none",
 							duration:3000
 						});
-						this.btnAddDisable = true;
-						this.maxTime = 60;
-						this.countDownFun();
+						// this.btnAddDisable = true;
+						// this.maxTime = 60;
+						// this.countDownFun();
 					},
 					fail: () => {},
 					complete: () => {}

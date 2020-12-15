@@ -13,7 +13,7 @@
 	export default {
 		data() {
 			return {
-				devid:'你获取的设备注册Id号',
+				devid:'a3e7d01c-a537-47d2-ac28-9ba5881b201a',
 				cmdstr:"led",
 				cmdcode:0,
 				ledsta:false
