@@ -109,9 +109,9 @@
 							icon:"none",
 							duration:3000
 						});
-						// this.btnAddDisable = true;
-						// this.maxTime = 60;
-						// this.countDownFun();
+						this.btnAddDisable = true;
+						this.maxTime = 60;
+						this.countDownFun();
 					},
 					fail: () => {},
 					complete: () => {}
