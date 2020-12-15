@@ -141,6 +141,7 @@
 			viewLightDetail(){
 				uni.navigateTo({
 					url: 'light_detail',
+					// ?list="+encodeURIComponent(JSON.stringify(this.room_range[0][this.room_index]))+ '&allprice=' +this.getAllPrice
 					success: res => {},
 					fail: () => {},
 					complete: () => {}

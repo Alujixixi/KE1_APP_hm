@@ -2,6 +2,10 @@
 	<view>
 		
 		<view>当前状态</view>
+		<view>
+			{{light_status}}
+			<image src="lightImg"></image>
+		</view>
 		<view>切换亮度</view>
 		<button type="primary">
 			高级
@@ -20,25 +24,29 @@
 		data() {
 			return {
 				devid:'4e83c49c-0a88-4b18-a781-9ebd9306a972',
-				cWidth: '',
-				cHeight: '',
-				cWidth2: '', //横屏图表
-				cHeight2: '', //横屏图表
-				pixelRatio: 1,
-				
+				light_status:"",
+				lightImg:"",
 			}
 		},
 		onLoad() {
-			_self = this;
-			this.cWidth = uni.upx2px(750);
-			this.cHeight = uni.upx2px(500);
-			this.cWidth2 = uni.upx2px(700);
-			this.cHeight2 = uni.upx2px(1100);
+			this.light_status = this.globalVal.current_room.light_status;
+			this.choose_light();
 		},
 		onReady() {
 		},
 		methods: {
-			   
+			choose_light(){
+				console.log(this.light_status);
+				if (this.light_status=="off"){
+					this.lightImg = "D:/HBuilderX/repo/KE1_APP_hm/img/off.png";
+				}
+				else if (this.light_status=="bright"){
+					this.lightImg = "../../img/on_bright.png";
+				}
+				else if (this.light_status=="dim"){
+					this.lightImg = "../../img/on_dim.png";
+				}
+			}
 
 		}
 	}
