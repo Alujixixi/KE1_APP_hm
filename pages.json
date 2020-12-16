@@ -13,12 +13,6 @@
 			}
 		},
 		{
-			"path": "pages/index/devinfo",
-			"style": {
-				"navigationBarTitleText": "设备信息"
-			}
-		},
-		{
 			"path": "pages/index/devhistory",
 			"style": {
 				"navigationBarTitleText": "设备历史信息"
@@ -53,12 +47,6 @@
 			"style": {
 				"navigationBarTitleText": "温度控制"
 			}
-		},
-		{
-			"path": "pages/index/humid_detail",
-			"style": {
-				"navigationBarTitleText": "湿度控制"
-			}
 		}
 	],
 	"globalStyle": {
@@ -77,12 +65,6 @@
 				"iconPath": "static/admin_off.png",
 				"selectedIconPath": "static/admin_on.png",
 				"text": "注册"
-			},
-			{
-				"pagePath": "pages/index/devinfo",
-				"iconPath": "static/admin_off.png",
-				"selectedIconPath": "static/admin_on.png",
-				"text": "查询"
 			},
 			{
 				"pagePath": "pages/index/Room_Info",
