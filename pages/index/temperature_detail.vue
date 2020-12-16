@@ -1,24 +1,32 @@
 <template>
 	<view>
-		
-		<view>
-			当前温度
-			{{temperature_num}}
-			供暖已{{temperature_status}}
+		<view id="bg_top">
+			<view id="bignum_box">
+					<text id="bignum">
+						{{temperature_num}}
+					</text>
+			</view>
+			<text id="small_c">℃</text>
+			<view id="dev_status">
+				供暖状态<br>{{temperature_status}}
+			</view>
+			<view id="outside_status">
+				室外温度<br>{{temperature_outside}}&nbsp℃
+			</view>
 		</view>
-		<view>
-			命令发送冷却cd: {{maxTime}}
-		</view>
-	<!-- 	<view id="light_pic">
-			<image :src="light_src"></image>
-		</view> -->
-		<view>
-			<button type="primary" :disabled="btnAddDisable" @tap="switch_tem('off')" id="btn_off">
-				关闭供暖
-			</button>
-			<button type="primary" :disabled="btnAddDisable" @tap="switch_tem('on')" id="btn_bright">
-				打开供暖
-			</button>
+
+		<view id="bg_bottom">
+			<view class="uni-flex uni-row">
+				<button type="warn" :disabled="btnAddDisable" @tap="switch_tem('off')" id="btn_off" class="dev_btn">
+					关闭<br>供暖
+				</button>
+				<button type="primary" :disabled="btnAddDisable" @tap="switch_tem('on')" id="btn_bright" class="dev_btn">
+					打开<br>供暖
+				</button>
+			</view>
+			<view id="order_cd">
+				命令发送冷却cd: {{maxTime}}
+			</view>
 		</view>
 	</view>
 </template>
@@ -32,6 +40,7 @@
 				temperature_status:"on",
 				btnAddDisable: false,
 				maxTime:0,
+				temperature_outside:6,
 			}
 		},
 		onLoad() {
@@ -125,8 +134,54 @@
 		overflow-x: hidden;
 	}
 	
-	#light_pic {
+	#bg_top {
+		height: 460px;
+		background-color: #82c5ff;
+		background-color: linear-gradient(to bottom right, #82c5ff, #5277ec);
+		text-align: center;
+		position: relative;
+	}
+	#bignum {
+		border-radius: 50%;
+		border: solid #e8e7ff73;
+		padding:160rpx;
+		color: #e8e7ff;
+		font-size: 160rpx;
+	}
+	#bignum_box {
+		padding-top: 300rpx;
+	}
+	#small_c {
+		color: #e8e7ff;
+	}
+	#dev_status {
+		bottom: 50rpx;
+		position: absolute;
+		left:100rpx;
+		color: #3a425f;
+		font-weight: 700;
+		font-size: 30rpx;
+	}
+	#outside_status {
+		bottom: 50rpx;
+		position: absolute;
+		right:100rpx;
+		color: #3a425f;
+		font-weight: 700;
+		font-size: 30rpx;
+	}
+	#bg_bottom {
+		margin-top: 50rpx;
 		text-align: center;
 	}
-
+	#order_cd{
+		text-align: center;
+		margin-top: 20rpx;
+	}
+	.dev_btn {
+		width: 150rpx;
+		height: 150rpx;
+		border-radius: 50%;
+		font-size: 30rpx;
+	}
 </style>

@@ -29,7 +29,7 @@
 				<view>{{devid}}</view>
 			</view>
 		</view>
-		<view class="topbox temp-box">
+		<view class="topbox temp-box" @tap="viewTemperatureDetail">
 			<view class="box-text">温度:  {{termperature}}</view>
 		</view>
 		<view class="topbox light-box uni-flex uni-row" @tap="viewLightDetail">
@@ -136,6 +136,14 @@
 				uni.navigateTo({
 					url: 'light_detail',
 					// ?list="+encodeURIComponent(JSON.stringify(this.room_range[0][this.room_index]))+ '&allprice=' +this.getAllPrice
+					success: res => {},
+					fail: () => {},
+					complete: () => {}
+				});
+			},
+			viewTemperatureDetail(){
+				uni.navigateTo({
+					url: 'temperature_detail',
 					success: res => {},
 					fail: () => {},
 					complete: () => {}
