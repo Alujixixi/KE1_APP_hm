@@ -14,18 +14,18 @@
 				命令发送冷却cd: {{maxTime}}
 			</view>
 			<view class="uni-flex uni-row">
-				<button type="primary" :disabled="btnAddDisable" @tap="switch_light('off')" id="btn_off">
-					关灯
+				<button  class="cmd-button button-one-line" :class="{'button-active': off_active}" :disabled="btnAddDisable" @tap="switch_light('off')">
+					<text class="dasad">关灯</text>
 				</button>
-				<button type="default" :disabled="btnAddDisable" @tap="switch_light('bright')" id="btn_bright">
+				<button id="btn_bright" class="cmd-button" :disabled="btnAddDisable" @tap="switch_light('bright')">
 					开灯<br>
 					高亮度
 				</button>
-				<button type="default" :disabled="btnAddDisable" @tap="switch_light('dim')" id="btn_dim">
+				<button id="btn_dim" class="cmd-button" :disabled="btnAddDisable" @tap="switch_light('dim')">
 					开灯<br>
 					低亮度
 				</button>
-				<button type="primary" :disabled="btnAddDisable"  id="btn_curtain">
+				<button class="cmd-button" :disabled="btnAddDisable"  id="btn_curtain" @tap="switch_light('curtain')">
 					窗帘
 				</button>
 			</view>
@@ -43,6 +43,7 @@
 				lightImg:"",
 				btnAddDisable: false,
 				maxTime:0,
+				off_active: true,
 			}
 		},
 		onLoad() {
@@ -140,33 +141,50 @@
 </script>
 
 <style>
-	
 	page {
 		background: #ffffff;
 		width: 750upx;
 		overflow-x: hidden;
 	}
 	
-	
 	#light_pic {
 		top:auto;
 		height:250px;
 	}
+	
 	image {
 		width: 150px;
 		height: 150px;
 		top:100px
 	}
+	
 	#current_text {
 		
 		margin-top:150px
 	}
-	button {
+	
+	.cmd-button {
 		width:80px;
 		height:80px;
 		margin-top: 15px;
-		border-radius: 90upx;
+		border: solid 1upx #AAAAAA;
+		border-radius: 100upx;
 		font-size: 14px;
+		background: #FFFFFF;
+	}
+	
+	.button-active {
+		color: #ffffff;
+		background: #0C4CD5;
+	}
+
+	.dasad {
+		line-height:200%
+	}
+	
+	#btn_off {
+		line-height: 100upx;
+		color: #ffffff;
 	}
 	
 	#order_cd {
@@ -175,8 +193,7 @@
 	#bg_top {
 		height: 450px;
 		background-color: #82c5ff;
-		
-			text-align: center;
+		text-align: center;
 	}
 	#bg_bottom {
 		bottom: 0;

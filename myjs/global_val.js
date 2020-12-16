@@ -33,7 +33,7 @@ var cmd_code_tab = {
 	"off" : 0,
 	"bright" : 1,
 	"dim" : 2,
-	// "" : 0,
+	"curtain" : 3,
 }
 
 export default {

@@ -9,7 +9,6 @@
 					<picker mode="multiSelector" :range="room_range" @change="room_change" :value="room_index" @columnchange="colchange">
 						<view class="uni-flex uni-row">
 							<view id="room-selector" style="padding: 0 20upx !important">
-								<!-- 这东西怎么不跟这变啊操 -->
 								{{room_range[0][room_index[0]]}}&nbsp&nbsp&nbsp&nbsp&nbsp{{room_range[1][room_index[1]]}}
 							</view>
 						</view>
