@@ -47,6 +47,18 @@
 			"style": {
 				"navigationBarTitleText": "灯光控制"
 			}
+		},
+		{
+			"path": "pages/index/temperature_detail",
+			"style": {
+				"navigationBarTitleText": "温度控制"
+			}
+		},
+		{
+			"path": "pages/index/humid_detail",
+			"style": {
+				"navigationBarTitleText": "湿度控制"
+			}
 		}
 	],
 	"globalStyle": {

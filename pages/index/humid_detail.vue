@@ -30,8 +30,9 @@
 	export default {
 		data() {
 			return {
-				devid:'a3e7d01c-a537-47d2-ac28-9ba5881b201a',
+				devid:'4e83c49c-0a88-4b18-a781-9ebd9306a972',
 				light_src: "",
+				// sdad: require("../../img"),
 				light_status:"",
 				lightImg:"",
 				btnAddDisable: false,
@@ -75,16 +76,15 @@
 					});
 					return;
 				}
-				if(0 != this.maxTime){
-					console.log("sendCmd busy");
-					return;
-				}
+				// if(0 != this.maxTime){
+				// 	console.log("sendCmd busy");
+				// 	return;
+				// }
 				// {"cmdstring":"{"L1":0,"L2":0}","cmdlen":15,"cmdcode":3}
-				console.log(this.globalVal.cmd_code_tab);
 				let cmdpara = {
 					cmdstring: status, // bright | dim | off
 					cmdlen: status.length,
-					cmdcode:this.globalVal.cmd_code_tab[status], // 以cmdcode的值来唯一区别不同的操作，对应关系见cmd_code_tab
+					cmdcode:this.globalVal.cmd_code_tab.switch_light,
 				}
 				let cmdstr = JSON.stringify(cmdpara);
 				console.log("cmdstr:"+cmdstr);
@@ -104,7 +104,7 @@
 							duration:3000
 						});
 						this.btnAddDisable = true;
-						this.maxTime = 5;
+						this.maxTime = 10;
 						this.countDownFun();
 					},
 					fail: () => {},
