@@ -1,27 +1,34 @@
 <template>
 	<view>
-		
-		<view>
-			当前状态
-			{{light_status}}
+		<view id="bg_top">
+			<view id="light_pic">
+				<image :src="light_src"></image>
+			</view>
+			<view id="current_text">
+				当前状态
+				{{light_status}}
+			</view>
 		</view>
-		<view>
-			命令发送冷却cd: {{maxTime}}
-		</view>
-		<view id="light_pic">
-			<image :src="light_src"></image>
-		</view>
-		<view>切换亮度</view>
-		<view>
-			<button type="primary" :disabled="btnAddDisable" @tap="switch_light('off')" id="btn_off">
-				关灯
-			</button>
-			<button type="primary" :disabled="btnAddDisable" @tap="switch_light('bright')" id="btn_bright">
-				开灯高亮度
-			</button>
-			<button type="primary" :disabled="btnAddDisable" @tap="switch_light('dim')" id="btn_dim">
-				开灯低亮度
-			</button>
+		<view id="bg_bottom">
+			<view id="order_cd">
+				命令发送冷却cd: {{maxTime}}
+			</view>
+			<view class="uni-flex uni-row">
+				<button type="primary" :disabled="btnAddDisable" @tap="switch_light('off')" id="btn_off">
+					关灯
+				</button>
+				<button type="default" :disabled="btnAddDisable" @tap="switch_light('bright')" id="btn_bright">
+					开灯<br>
+					高亮度
+				</button>
+				<button type="default" :disabled="btnAddDisable" @tap="switch_light('dim')" id="btn_dim">
+					开灯<br>
+					低亮度
+				</button>
+				<button type="primary" :disabled="btnAddDisable"  id="btn_curtain">
+					窗帘
+				</button>
+			</view>
 		</view>
 	</view>
 </template>
@@ -135,13 +142,44 @@
 <style>
 	
 	page {
-		background: #F2F2F2;
+		background: #ffffff;
 		width: 750upx;
 		overflow-x: hidden;
 	}
 	
+	
 	#light_pic {
-		text-align: center;
+		top:auto;
+		height:250px;
+	}
+	image {
+		width: 150px;
+		height: 150px;
+		top:100px
+	}
+	#current_text {
+		
+		margin-top:150px
+	}
+	button {
+		width:80px;
+		height:80px;
+		margin-top: 15px;
+		border-radius: 90upx;
+		font-size: 14px;
+	}
+	
+	#order_cd {
+		margin-top: 5px;
+	}
+	#bg_top {
+		height: 450px;
+		background-color: #82c5ff;
+		
+			text-align: center;
+	}
+	#bg_bottom {
+		bottom: 0;
 	}
 
 </style>
