@@ -28,9 +28,14 @@ var rooms = {
 
 var index_2_room_type_tab = ["invalid", "guest_room", "banquet_hall", "storeroom"];
 
+var cmd_code_tab = {
+	"switch_light" : 0,
+}
+
 export default {
   default_url,
   rooms,
   current_room,
   index_2_room_type_tab,
+  cmd_code_tab,
 }
