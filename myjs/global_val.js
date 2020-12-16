@@ -29,7 +29,10 @@ var rooms = {
 var index_2_room_type_tab = ["invalid", "guest_room", "banquet_hall", "storeroom"];
 
 var cmd_code_tab = {
-	"switch_light" : 0,
+	"off" : 0,
+	"bright" : 1,
+	"dim" : 2,
+	// "" : 0,
 }
 
 export default {
