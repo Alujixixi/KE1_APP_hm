@@ -18,6 +18,7 @@ var default_url = {
  	device_id: "43132880-90cb-45e7-b4f9-f3f0d1670a82",  // 房间对应设备的设备id
  	device_name: "",  //设备名字，这个不知道有啥用
 	light_status:"off", // off bright dim
+	temperature_num:25,
 };
 
 var rooms = {

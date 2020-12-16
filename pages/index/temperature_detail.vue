@@ -2,25 +2,22 @@
 	<view>
 		
 		<view>
-			当前状态
-			{{light_status}}
+			当前温度
+			{{temperature_num}}
+			供暖已{{temperature_status}}
 		</view>
 		<view>
 			命令发送冷却cd: {{maxTime}}
 		</view>
-		<view id="light_pic">
+	<!-- 	<view id="light_pic">
 			<image :src="light_src"></image>
-		</view>
-		<view>切换亮度</view>
+		</view> -->
 		<view>
-			<button type="primary" :disabled="btnAddDisable" @tap="switch_light('off')" id="btn_off">
-				关灯
+			<button type="primary" :disabled="btnAddDisable" @tap="switch_tem('off')" id="btn_off">
+				关闭供暖
 			</button>
-			<button type="primary" :disabled="btnAddDisable" @tap="switch_light('bright')" id="btn_bright">
-				开灯高亮度
-			</button>
-			<button type="primary" :disabled="btnAddDisable" @tap="switch_light('dim')" id="btn_dim">
-				开灯低亮度
+			<button type="primary" :disabled="btnAddDisable" @tap="switch_tem('on')" id="btn_bright">
+				打开供暖
 			</button>
 		</view>
 	</view>
@@ -31,39 +28,27 @@
 		data() {
 			return {
 				devid:'4e83c49c-0a88-4b18-a781-9ebd9306a972',
-				light_src: "",
-				// sdad: require("../../img"),
-				light_status:"",
-				lightImg:"",
+				temperature_num:0,
+				temperature_status:"on",
 				btnAddDisable: false,
 				maxTime:0,
 			}
 		},
 		onLoad() {
-			this.light_status = this.globalVal.current_room.light_status;
-			this.renew_light_img();
+			this.temperature_num = this.globalVal.current_room.temperature_num;
+			this.renew_temperature_status();
 		},
 		onReady() {
 		},
 		methods: {
-			switch_light(status) {
-				this.light_status = status;
-				this.renew_light_img();
+			switch_tem(status) {
+				this.temperature_status = status;
+				this.renew_temperature_status();
 				this.send_light_cmd(status);
 			},
-			renew_light_img(){
-				switch (this.light_status) {
-					case "off": 
-						this.light_src = require("../../img/off.png");
-						break;
-					case "bright":
-						this.light_src = require("../../img/on_bright.png");
-						break;
-					case "dim":
-						this.light_src = require("../../img/on_dim.png");
-						break;
+			renew_temperature_status(){
+				switch (this.temperature_num) {
 					default:
-						console.log(this.light_status);
 						break;
 				}
 			},
