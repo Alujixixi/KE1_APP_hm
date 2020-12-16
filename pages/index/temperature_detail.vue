@@ -61,10 +61,10 @@
 					});
 					return;
 				}
-				// if(0 != this.maxTime){
-				// 	console.log("sendCmd busy");
-				// 	return;
-				// }
+				if(0 != this.maxTime){
+					console.log("sendCmd busy");
+					return;
+				}
 				// {"cmdstring":"{"L1":0,"L2":0}","cmdlen":15,"cmdcode":3}
 				let cmdpara = {
 					cmdstring: status, // bright | dim | off

@@ -24,35 +24,30 @@
 			</view>
 		</view>
 		
-		<view class="topbox">
+		<view class="topbox device-box">
 			<view>
 				<view>设备号:</view>
 				<view>{{devid}}</view>
 			</view>
 		</view>
-		<view class="topbox2" @tap="viewLightDetail">
-			<view>
-				<view >光强:</view>
-				<view >{{illumination}}</view>
+		<view class="topbox temp-box">
+			<view class="box-text">温度:  {{termperature}}</view>
+		</view>
+		<view class="topbox light-box uni-flex uni-row" @tap="viewLightDetail">
+			<view class="box-text">光强:  {{illumination}}</view>
+			<view class="right-ctl">
+				<view class="right-ctl-txt">灯光控制→</view>
 			</view>
 		</view>
-		<view class="topbox">
-			<view>
-				<view>噪音:</view>
-				<view>{{sound}}</view>
-			</view>
+		<view class="topbox noise-box">
+			<view class="box-text">噪音:  {{sound}}</view>
 		</view>
-		<view class="topbox2">
-			<view>
-				<view>温度:</view>
-				<view>{{termperature}}</view>
+		<view class="topbox humid-box">
+			<view class="box-text">湿度:   {{humidity}}</view>
+			<view class="right-ctl" style="color: #FFFFFF;">
+				加湿器开关：<switch />
 			</view>
-		</view>
-		<view class="topbox">
-			<view>
-				<view>湿度:</view>
-				<view>{{humidity}}</view>
-			</view>
+			
 		</view>
 		<view class="uni-padding-wrap uni-common-mt">
 			<button class="flush-button"   @tap="getInfo">刷新数据</button>
@@ -67,7 +62,7 @@
 			return {
 				room_range: [["请选择","客房","宴会厅","储藏室"],["待选择"]],
 				room_index: [0,0],
-				devid:'43132880-90cb-45e7-b4f9-f3f0d1670a82',
+				devid:'a3e7d01c-a537-47d2-ac28-9ba5881b201a',
 				devinfo:null,
 				userinfo:null,
 				illumination:666,//光照
@@ -79,7 +74,7 @@
 			}
 		},
 		onLoad:function(e){
-			
+			this.getInfo();
 		},
 		methods: {
 			room_change(e) {
@@ -167,8 +162,9 @@
 		height: 100%;
 	}
 	
-	.topbox{
-		background: #8A6DE9;
+	.topbox {
+		position: relative;
+		background: #d3e8e9;
 		padding: 15px;
 		height: 40px;
 		margin: 9px;
@@ -176,12 +172,42 @@
 		border-radius: 15px;
 	}
 	
-	.topbox2{
-		background: #66AAFF;
-		padding: 15px;
-		height: 40px;
-		margin: 9px;
-		border-radius: 15px;
+	.device-box {
+		background-color: #767676;
+		color: #FFFFFF;
+	}
+	
+	.light-box {
+		background-color: #f0ffb9;
+	}
+	
+	.noise-box {
+		
+	}
+	
+	.temp-box {
+		background: #fe5e58;
+	}
+	
+	.humid-box {
+		background: #0A98D5;
+	}
+	
+	.box-text {
+		position:absolute;
+		top: 20%;
+		font-size: 40upx;
+	}
+	
+	.right-ctl {
+		position: absolute;
+		right: 10%;
+		top: 30%;
+		font-size: 20upx;
+		height: 30%;
+	}
+	.right-ctl-txt {
+		color: #717e7d;
 	}
 	.content{
 		height: calc(100% - 10px);
@@ -203,8 +229,8 @@
 	    margin-left: 0;
 	    margin-right: 0;
 		margin-bottom: 10px;
-		background: #FFB400;
-		color: #000000;
+		background: #767676;
+		color: #ffffff;
 	}
 	@import "./style/devinfo.css";
 	@media ( min-width : 750px) {
