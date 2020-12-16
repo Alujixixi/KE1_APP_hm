@@ -15,17 +15,17 @@
 			</view>
 			<view class="uni-flex uni-row">
 				<button  class="cmd-button button-one-line" :class="{'button-active': off_active}" :disabled="btnAddDisable" @tap="switch_light('off')">
-					<text class="dasad">关灯</text>
+					关灯
 				</button>
-				<button id="btn_bright" class="cmd-button" :disabled="btnAddDisable" @tap="switch_light('bright')">
+				<button id="btn_bright" class="cmd-button" :class="{'button-active': bright_active}" :disabled="btnAddDisable" @tap="switch_light('bright')">
 					开灯<br>
 					高亮度
 				</button>
-				<button id="btn_dim" class="cmd-button" :disabled="btnAddDisable" @tap="switch_light('dim')">
+				<button id="btn_dim" class="cmd-button" :class="{'button-active': dim_active}" :disabled="btnAddDisable" @tap="switch_light('dim')">
 					开灯<br>
 					低亮度
 				</button>
-				<button class="cmd-button" :disabled="btnAddDisable"  id="btn_curtain" @tap="switch_light('curtain')">
+				<button class="cmd-button button-one-line" :class="{'button-active': curtain_active}" :disabled="btnAddDisable"  id="btn_curtain" @tap="switch_light('curtain')">
 					窗帘
 				</button>
 			</view>
@@ -44,6 +44,9 @@
 				btnAddDisable: false,
 				maxTime:0,
 				off_active: true,
+				bright_active: false,
+				dim_active: false,
+				curtain_active: false,
 			}
 		},
 		onLoad() {
@@ -54,6 +57,27 @@
 		},
 		methods: {
 			switch_light(status) {
+				switch(status) {
+					case "off":
+						this.off_active = true;
+						this.bright_active = false;
+						this.dim_active = false;
+						break;
+					case "bright":
+						this.off_active = false;
+						this.bright_active = true;
+						this.dim_active = false;
+						break;
+					case "dim":
+						this.off_active = false;
+						this.bright_active = false;
+						this.dim_active = true;
+						break;
+					case "curtain":
+						this.curtain_active = !this.curtain_active;
+						break;
+					default: break;
+				}
 				this.light_status = status;
 				this.renew_light_img();
 				this.send_light_cmd(status);
@@ -123,14 +147,12 @@
 				console.log("countDown start...");
 				this.cntDown = setInterval(()=>{
 					if(0 == this.maxTime){
-						this.btnInfo = "命令下发"
 						clearInterval(this.interval);
 						this.interval = null;
 						this.btnAddDisable = false;
 						return;
 					}else{
 						this.maxTime--;
-						this.btnInfo = this.maxTime+"秒";
 					}
 					//console.log(this.btnInfo);
 				},1000);
@@ -177,9 +199,10 @@
 		color: #ffffff;
 		background: #0C4CD5;
 	}
-
-	.dasad {
-		line-height:200%
+	
+	.button-one-line {
+		font-size: 35upx;
+		padding: 35rpx;
 	}
 	
 	#btn_off {
