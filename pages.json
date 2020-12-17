@@ -47,6 +47,12 @@
 			"style": {
 				"navigationBarTitleText": "温度控制"
 			}
+		},
+		{
+			"path": "pages/index/Find_Device",
+			"style": {
+				"navigationBarTitleText": "寻找设备"
+			}
 		}
 	],
 	"globalStyle": {

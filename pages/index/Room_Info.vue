@@ -51,6 +51,9 @@
 		<view class="uni-padding-wrap uni-common-mt">
 			<button class="flush-button"   @tap="getInfo">刷新数据</button>
 		</view>
+		<view class="find-device" @tap="to_find_device">
+			设备失踪？寻找设备
+		</view>
 	</view>
 </template>
 
@@ -149,6 +152,16 @@
 					complete: () => {}
 				});
 			},
+			to_find_device() {
+				uni.navigateTo({
+					url: 'Find_Device',
+					success: res => {
+						
+					},
+					fail: () => {},
+					complete: () => {}
+				})
+			}
 		}
 	}
 </script>
@@ -238,6 +251,13 @@
 		margin-bottom: 10px;
 		background: #767676;
 		color: #ffffff;
+	}
+	
+	.find-device {
+		color: #007AFF;
+		font-style: italic;
+		text-decoration: underline;
+		margin-left: 30upx;
 	}
 	@import "./style/devinfo.css";
 	@media ( min-width : 750px) {
